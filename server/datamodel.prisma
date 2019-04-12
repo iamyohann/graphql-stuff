@@ -1,0 +1,42 @@
+type Route {
+  id: ID! @unique
+  name: String! @default(value: "Page")
+  exact: Boolean! @default(value: false)
+  path: String!
+}
+
+enum PageType {
+  HOME,
+  FAQ
+}
+
+# Content Types
+type HomePage {
+  hero: String #optional (default to some background color)
+}
+
+type FAQ {
+  title: String
+  body: String
+}
+
+type FAQPage {
+  faqs: [FAQ!]!
+}
+
+# Ideally, but prisma does not support union types
+# union PageContent = HomePage | FAQPage
+
+type Page {
+  id: ID! @unique
+  title: String!
+  subtitle: String!
+  route: Route!
+
+  # Prisma does not support union types at the moment
+  # Will use a discriminant to determine the type here
+  # https://github.com/prisma/prisma/issues/165#issuecomment-306051926
+  pageType: PageType!
+  homeContent: HomePage
+  faqContent: FAQPage
+}

@@ -1,0 +1,21 @@
+mutation {
+  createPage(data: {
+    title: "Qantas Cars"
+    subtitle: "Powered by the sun with the best safety record on the planet",
+    route: {
+      create: {
+        exact: true
+        path: "/"
+        name: "Home"
+      }
+    }
+    pageType: HOME
+    homeContent: {
+      create: {
+        hero: "https://drive.google.com/uc?id=1svw9VdyX4fyRHd1kggq0akDSafmdOS7L"
+      }
+    }
+  }) {
+    id
+  }
+}
