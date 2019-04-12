@@ -4,7 +4,7 @@ Playground for GraphQL
 Requirements
 1. Prisma
 
-````
+```
 brew tap prisma/prisma
 brew install prisma
 ```
